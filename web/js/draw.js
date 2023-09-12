@@ -12,3 +12,9 @@ draw.path = (ctx, path, color = "black") => {
   ctx.lineJoin = "round";
   ctx.stroke();
 };
+
+draw.paths = (ctx, paths, color = "black") => {
+  for (const path of paths) {
+    draw.path(ctx, path, color);
+  }
+};

@@ -1,3 +1,4 @@
+// Tutorial with timestamp: https://youtu.be/vDDjtwQDw2k?si=OJo4mGXZ_L3myj2Z&t=1463
 class SketchPad {
   constructor(container, size = 400) {
     this.canvas = document.createElement("canvas");
@@ -11,7 +12,7 @@ class SketchPad {
 
     this.ctx = this.canvas.getContext("2d");
 
-    this.path = [];
+    this.paths = [];
     this.isDrawing = false;
 
     this.#addEventListeners();
@@ -20,16 +21,17 @@ class SketchPad {
   #addEventListeners() {
     this.canvas.onmousedown = (evt) => {
       const mouse = this.#getMouse(evt);
-      this.path = [mouse];
+      this.paths.push([mouse]);
       this.isDrawing = true;
     };
 
     this.canvas.onmousemove = (evt) => {
       if (this.isDrawing) {
         const mouse = this.#getMouse(evt);
-        this.path.push(mouse);
+        const lastPath = this.paths[this.paths.length - 1];
+        lastPath.push(mouse);
         this.#redraw();
-        console.log(this.path.length);
+        // console.log(this.path.length);
       }
     };
 
@@ -40,7 +42,7 @@ class SketchPad {
 
   #redraw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    draw.path(this.ctx, this.path);
+    draw.paths(this.ctx, this.paths);
   }
 
   #getMouse = (evt) => {
