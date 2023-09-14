@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Drawings Viewer</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: skyblue;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .drawing-container {
+        margin: 10px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        background-color: #fff;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      .drawing-title {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+
+      .drawing-canvas {
+        border: 1px solid #000;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      // load the json file
+      fetch("riyan.json")
+        .then((response) => response.json())
+        .then((data) => {
+          const drawings = data.drawings;
+
+          // display the drawings
+          for (const label in drawings) {
+            const drawingContainer = document.createElement("div");
+            drawingContainer.className = "drawing-container";
+
+            const drawingTitle = document.createElement("div");
+            drawingTitle.className = "drawing-title";
+            drawingTitle.textContent = `Drawing: ${label}`;
+
+            const drawingCanvas = document.createElement("canvas");
+            drawingCanvas.className = "drawing-canvas";
+            drawingCanvas.width = 400;
+            drawingCanvas.height = 400;
+            const ctx = drawingCanvas.getContext("2d");
+
+            drawings[label].forEach((path) => {
+              ctx.strokeStyle = "black";
+              ctx.lineWidth = 8;
+              ctx.beginPath();
+              ctx.moveTo(...path[0]);
+              for (let i = 1; i < path.length; i++) {
+                ctx.lineTo(...path[i]);
+              }
+              ctx.lineCap = "round";
+              ctx.lineJoin = "round";
+              ctx.stroke();
+            });
+
+            // display the drawings on the body
+            drawingContainer.appendChild(drawingTitle);
+            drawingContainer.appendChild(drawingCanvas);
+            document.body.appendChild(drawingContainer);
+          }
+        })
+        .catch((error) => console.error("Error loading JSON data:", error));
+    </script>
+  </body>
+</html>
