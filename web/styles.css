@@ -31,3 +31,19 @@ button:disabled:hover {
     background-color: gray;
     cursor: default;
 }
+
+.row {
+    display: flex;
+    align-items: center;
+}
+
+.thumb {
+    width: 10%;
+}
+
+.rowLabel {
+    width: 15%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
