@@ -34,10 +34,22 @@ function createRow(container, studentName, samples) {
 }
 
 function handleClick(sample, doScroll = true) {
+  if (sample == null) {
+    [...document.querySelectorAll(".emphasize")].forEach((e) =>
+      e.classList.remove("emphasize")
+    );
+    return;
+  }
   [...document.querySelectorAll(".emphasize")].forEach((e) =>
     e.classList.remove("emphasize")
   );
   const el = document.getElementById(`sample_${sample.id}`);
+
+  if (el.classList.contains("emphasize")) {
+    el.classList.remove("emphasize");
+    chart.selectSample(null);
+    return;
+  }
   el.classList.add("emphasize");
   if (doScroll) {
     el.scrollIntoView({
