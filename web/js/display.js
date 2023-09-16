@@ -31,3 +31,8 @@ function createRow(container, studentName, samples) {
     row.appendChild(sampleContainer);
   }
 }
+
+function handleClick(sample) {
+  const el = document.getElementById(`sample_${sample.id}`);
+  el.classList.add("emphasize");
+}
