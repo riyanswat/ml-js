@@ -201,6 +201,7 @@ class Chart {
         this.pixelBounds,
         this.dynamicPoint
       );
+      graphics.drawPoint(ctx, pixelLoc, "rgba(255, 255, 255, 0.7)", 10000000);
       graphics.drawPoint(ctx, pixelLoc, "black");
     }
 
