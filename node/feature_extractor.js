@@ -1,5 +1,5 @@
 const constants = require("../common/constants.js");
-const features = require("../common/features.js");
+const featureFunctions = require("../common/featureFunctions.js");
 
 const fs = require("fs");
 
@@ -12,7 +12,10 @@ for (const sample of samples) {
     fs.readFileSync(`${constants.JSON_DIR}/${sample.id}.json`)
   );
 
-  sample.point = [features.getPathCount(paths), features.getPathCount(paths)];
+  sample.point = [
+    featureFunctions.getPathCount(paths),
+    featureFunctions.getPathCount(paths),
+  ];
 }
 
 const featureNames = ["Path Count", "Point Count"];

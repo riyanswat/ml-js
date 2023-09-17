@@ -66,7 +66,7 @@ button:disabled:hover {
 }
 
 #container {
-    width: calc(100% - 400px);
+    width: calc(100% - 500px);
 }
 
 #chartContainer {
@@ -74,4 +74,22 @@ button:disabled:hover {
     right: 0;
     top: 50%;
     transform: translate(0, -50%);
+}
+
+#inputContainer {
+    position: fixed;
+    right: 500px;
+    top: 50%;
+    transform: translate(0, -50%);
+    text-align: center;
+    margin: 10px;
+}
+
+#controlPanel {
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 500px;
+    text-align: center;
+    padding: 10px;
 }
