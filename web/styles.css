@@ -93,3 +93,9 @@ button:disabled:hover {
     text-align: center;
     padding: 10px;
 }
+
+#predictedLabelContainer {
+    color: white;
+    font-size: 30px;
+    position: relative;
+}

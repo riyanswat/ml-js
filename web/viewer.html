@@ -8,7 +8,9 @@
   </head>
   <body>
     <h1>Data Viewer</h1>
-    <div id="inputContainer"></div>
+    <div id="inputContainer">
+      <div id="predictedLabelContainer"></div>
+    </div>
     <div id="chartContainer"></div>
     <div id="controlPanel">
       <button onClick="toggleInput()">Toggle Input</button>
@@ -61,7 +63,7 @@
         const functions = featureFunctions.inUse.map((f) => f.function);
         point = functions.map((f) => f(paths));
         const label = classify(point);
-        console.log(label);
+        predictedLabelContainer.innerHTML = `Is it a ${label}?`
         chart.showDynamicPoint(point);
       }
 
