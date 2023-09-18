@@ -60,11 +60,12 @@ function handleClick(sample, doScroll = true) {
   chart.selectSample(sample);
 }
 
-
-function toggleInput(){
-  if(inputContainer.style.display == "none"){
+function toggleInput() {
+  if (inputContainer.style.display == "none") {
     inputContainer.style.display = "block";
+    sketchPad.triggerUpdate();
   } else {
     inputContainer.style.display = "none";
+    chart.hideDynamicPoint();
   }
 }

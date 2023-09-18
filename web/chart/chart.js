@@ -46,6 +46,11 @@ class Chart {
     this.#draw();
   }
 
+  hideDynamicPoint() {
+    this.dynamicPoint = null;
+    this.#draw();
+  }
+
   #addEventListeners() {
     const { canvas, dataTrans, dragInfo } = this;
     canvas.onmousedown = (evt) => {
