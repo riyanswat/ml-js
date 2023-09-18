@@ -183,7 +183,7 @@ class Chart {
 
     const bounds = {
       left: minX,
-      right: minX + maxDelta,
+      right: maxX //minX + maxDelta,
       top: minY + maxDelta,
       bottom: minY,
     };
