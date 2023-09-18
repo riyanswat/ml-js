@@ -64,7 +64,7 @@
         point = functions.map((f) => f(paths));
         const label = classify(point);
         predictedLabelContainer.innerHTML = `Is it a ${label}?`
-        chart.showDynamicPoint(point);
+        chart.showDynamicPoint(point, label);
       }
 
       function classify(point) {

@@ -41,8 +41,8 @@ class Chart {
     this.#addEventListeners();
   }
 
-  showDynamicPoint(point) {
-    this.dynamicPoint = point;
+  showDynamicPoint(point, label) {
+    this.dynamicPoint = {point, label};
     this.#draw();
   }
 
@@ -201,13 +201,14 @@ class Chart {
     }
 
     if (this.dynamicPoint) {
+      const {point, label} = this.dynamicPoint;
       const pixelLoc = math.remapPoint(
         this.dataBounds,
         this.pixelBounds,
-        this.dynamicPoint
+        point
       );
       graphics.drawPoint(ctx, pixelLoc, "rgba(255, 255, 255, 0.7)", 10000000);
-      graphics.drawPoint(ctx, pixelLoc, "black");
+      graphics.drawImage(ctx, this.styles[label].image, pixelLoc);
     }
 
     this.#drawAxes();
