@@ -68,7 +68,7 @@ fs.writeFileSync(
 );
 
 fs.writeFileSync(
-  constants.TRAINING,
+  constants.TRAINING_JS,
   `const training = ${JSON.stringify({ featureNames, samples: training })};`
 );
 
@@ -88,7 +88,7 @@ fs.writeFileSync(
 );
 
 fs.writeFileSync(
-  constants.TESTING,
+  constants.TESTING_JS,
   `const testing = ${JSON.stringify({ featureNames, samples: testing })};`
 );
 
