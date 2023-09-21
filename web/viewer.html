@@ -14,6 +14,7 @@
     <div id="chartContainer"></div>
     <div id="controlPanel">
       <button onClick="toggleInput()">Toggle Input</button>
+      <div id="statistics"></div>
     </div>
 
     <div id="container"></div>
@@ -40,13 +41,24 @@
       const trainingSamples = training.samples;
       const testingSamples = testing.samples;
 
+      const k = 50;
+
+      let correctCount = 0;
+      let totalCount = 0;
+
       for (const testSample of testingSamples) {
         testSample.truth = testSample.label;
         testSample.label = "?";
         const { label } = classify(testSample.point);
         testSample.label = label;
         testSample.correct = testSample.label == testSample.truth;
+        totalCount++;
+        correctCount += testSample.correct ? 1 : 0;
       }
+
+      statistics.innerHTML = `<b>ACCURACY</b><br>${correctCount}/${totalCount} (${utils.formatPercent(
+        correctCount / totalCount
+      )})`;
 
       const trainingGroups = utils.groupBy(trainingSamples, "student_id");
 
@@ -102,7 +114,7 @@
 
       function classify(point) {
         const samplePoints = trainingSamples.map((s) => s.point);
-        const indices = utils.getNearest(point, samplePoints, 10);
+        const indices = utils.getNearest(point, samplePoints, k);
         const nearestSamples = indices.map((i) => trainingSamples[i]);
         const labels = nearestSamples.map((s) => s.label);
         const counts = {};
