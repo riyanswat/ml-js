@@ -15,6 +15,7 @@ class Chart {
     container.appendChild(this.canvas);
 
     this.ctx = this.canvas.getContext("2d");
+    this.ctx.imageSmoothingEnabled = false;
 
     this.margin = options.size * 0.11;
     this.transparency = options.transparency || 1;
